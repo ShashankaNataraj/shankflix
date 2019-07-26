@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Header from "./Components/Header/Header";
 import Reel from "./Components/Reel/Reel";
-import "./styles.css";
+import "./Styles.scss";
 import { StateProvider } from "./State";
 import Constants from "./Constants";
 
