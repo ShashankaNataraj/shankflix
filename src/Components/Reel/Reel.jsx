@@ -4,10 +4,13 @@ import Constants from "../../Constants";
 import Thumbnail from "./Movie/Thumbnail";
 import "./Reel.scss";
 import { useStateValue } from "../../State";
-import LazyLoad from "react-lazyload";
+import Preview from "./Preview/Preview";
 
-export default function Reel() {
-  const [{ isLoading, movies }, dispatch] = useStateValue();
+export default function Reel(props) {
+  const [
+    { isLoading, movies, breaksAfterEvery, expandedMovie },
+    dispatch
+  ] = useStateValue();
   useEffect(() => {
     async function fetchData() {
       dispatch({
@@ -27,12 +30,59 @@ export default function Reel() {
     }
     fetchData();
   }, []);
+  let previewToBeInsertedAfter = -1;
+  if (typeof expandedMovie === "object" && expandedMovie !== null) {
+    previewToBeInsertedAfter =
+      (Math.ceil((expandedMovie.thumbIdx + 1) / breaksAfterEvery) - 1) *
+      breaksAfterEvery;
+  }
+  function onThumbnailClick(evt, movie, thumbnailData) {
+    const siblings = evt.currentTarget.parentElement.children;
+    let lastX = 0,
+      breaksAfterEvery = 0; // We use this variable to store the first break in the layout. Since the layout is symmetrical, it must break at the same point in every line
+    [...siblings]
+      .filter(child => child.className !== "preview")
+      .every((child, childIdx) => {
+        const boundingRect = child.getBoundingClientRect();
+        if (boundingRect.x > lastX) {
+          //No op, the cells in the row are being traversed, just record the current X coordinate and move on to the next looped item
+          lastX = boundingRect.x;
+          return true;
+        } else {
+          // The browser has broken the cell to the next row, record the idx it has broken at and break out of the loop
+          breaksAfterEvery = childIdx;
+          return false;
+        }
+      });
+    dispatch({
+      type: "setExpandedMovie",
+      expandedMovie: { ...thumbnailData, thumbIdx: thumbnailData.thumbIdx },
+      breaksAfterEvery,
+      event: evt
+    });
+  }
   return (
     <div className="reel">
       {!isLoading &&
-        Object.keys(movies).map(movieIdx => {
-          const movie = movies[movieIdx];
-          return <Thumbnail data={movie} key={movies[movieIdx].videoID} />;
+        Object.keys(movies).map((movieKey, movieIdx) => {
+          const movie = movies[movieKey],
+            previewPresent =
+              expandedMovie &&
+              previewToBeInsertedAfter >= 0 &&
+              previewToBeInsertedAfter === movieIdx;
+
+          return (
+            <>
+              {previewPresent && (
+                <Preview expandedMovie={expandedMovie}>asdasdasdasd</Preview>
+              )}
+              <Thumbnail
+                data={{ ...movie, thumbIdx: movieIdx }}
+                key={movies[movieKey].videoID}
+                onThumbnailClick={onThumbnailClick}
+              />
+            </>
+          );
         })}
     </div>
   );

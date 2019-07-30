@@ -9,12 +9,7 @@ export default function Thumbnail(props) {
   return (
     <div
       className="thumbnail"
-      onClick={(evt, movie) => {
-        dispatch({
-          type: "setExpandedMovie",
-          expandedMovie: props.data
-        });
-      }}
+      onClick={(evt, movie) => props.onThumbnailClick(evt, movie, props.data)}
     >
       <LazyLoad once={true}>
         <img src={props.data.smallImageURL} alt={props.data.title} />

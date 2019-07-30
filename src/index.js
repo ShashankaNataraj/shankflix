@@ -25,9 +25,11 @@ function App() {
           movies: action.movies
         };
       case "setExpandedMovie":
+        let { breaksAfterEvery } = action;
         return {
           ...state,
-          expandedMovie: action.expandedMovie
+          expandedMovie: action.expandedMovie,
+          breaksAfterEvery
         };
       default:
         return state;
