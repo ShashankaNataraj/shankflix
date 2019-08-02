@@ -7,7 +7,18 @@ $thumbnail-image-width: $thumbnail-proportion;
   margin: .5em;
   display:table;
   cursor:pointer;
-  img {
+  position:relative;
+  .dummy-image {
+    background-color: white;
+      & i{
+      font-size:5em;
+      position: absolute;
+      top: .5em;
+      right: 0.5em;
+      
+    }
+  }
+  img, .dummy-image {
     height:$thumbnail-image-height;
     width:$thumbnail-image-width;
     opacity: 0.8;
@@ -61,6 +72,43 @@ $thumbnail-image-width: $thumbnail-proportion;
       position: absolute;
       left: -6%;
       top: 50%;
+    }
+  }
+  &.highlighted {
+    border:.15em solid white;
+  }
+  .arrow-top{
+    margin: 0 0 15px 0;
+    width: 0px;
+    height: 0px;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid #ffffff;
+    position: absolute;
+    left: -7%;
+    top: -10%;
+    transform: rotate(90deg);
+  }
+}
+
+@media (max-width: 645px) {
+  .thumbnail{
+    width:100%;
+    .thumbnail-container{
+      width:75%;
+      .stats{
+        .stat{
+          &:nth-child(1){
+            left: 0em;
+          }
+          &:nth-child(2){
+            left:5em;
+          }
+        }
+      }
+      .arrow-left {
+        left:-4%;
+      }
     }
   }
 }

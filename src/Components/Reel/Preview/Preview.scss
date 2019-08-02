@@ -1,3 +1,19 @@
-.preview {
+.preview-container{
+
   flex: 0 0 100%;
+  background-color:#373f4c;
+  & > .preview {
+    flex: 0 0 100%;
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    .player-area{
+    }
+  }
+  .details{
+    color:white;
+    margin-top:3em;
+  }
 }

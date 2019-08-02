@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Utils from "../../Utils";
 import Constants from "../../Constants";
-import Thumbnail from "./Movie/Thumbnail";
+import Thumbnail from "./Thumbnail/Thumbnail";
 import "./Reel.scss";
 import { useStateValue } from "../../State";
 import Preview from "./Preview/Preview";
@@ -41,7 +41,7 @@ export default function Reel(props) {
     let lastX = 0,
       breaksAfterEvery = 0; // We use this variable to store the first break in the layout. Since the layout is symmetrical, it must break at the same point in every line
     [...siblings]
-      .filter(child => child.className !== "preview")
+      .filter(child => child.className.indexOf("preview") < 0)
       .every((child, childIdx) => {
         const boundingRect = child.getBoundingClientRect();
         if (boundingRect.x > lastX) {
@@ -61,25 +61,38 @@ export default function Reel(props) {
       event: evt
     });
   }
+  let dummyData = [],
+    isDummyMode = false;
+  if (isLoading) {
+    isDummyMode = true;
+    dummyData = [...Array(50)].map((ele, eleIdx) => {
+      return {};
+    });
+  }
   return (
     <div className="reel">
+      {isDummyMode &&
+        isLoading &&
+        dummyData.map(thumb => <Thumbnail isDummyMode data={thumb} />)}
+
       {!isLoading &&
+        !isDummyMode &&
         Object.keys(movies).map((movieKey, movieIdx) => {
           const movie = movies[movieKey],
             previewPresent =
               expandedMovie &&
               previewToBeInsertedAfter >= 0 &&
-              previewToBeInsertedAfter === movieIdx;
+              previewToBeInsertedAfter === movieIdx,
+            isHighlighted = expandedMovie && movieKey === expandedMovie.mediaID;
 
           return (
             <>
-              {previewPresent && (
-                <Preview expandedMovie={expandedMovie}>asdasdasdasd</Preview>
-              )}
+              {previewPresent && <Preview expandedMovie={expandedMovie} />}
               <Thumbnail
                 data={{ ...movie, thumbIdx: movieIdx }}
                 key={movies[movieKey].videoID}
                 onThumbnailClick={onThumbnailClick}
+                highlighted={isHighlighted}
               />
             </>
           );
