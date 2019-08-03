@@ -11,7 +11,7 @@ export default function Preview(props) {
           className="video"
           videoProps={{
             height: "100%",
-            width: (window.innerWidth * 50) / 100
+            width: (window.innerWidth * 90) / 100
           }}
         />
       </div>
