@@ -1,8 +1,4 @@
-$details-bg-color:#373f4c;
-$thumbnail-proportion: 10em;
-$thumbnail-image-height: $thumbnail-proportion;
-$thumbnail-image-width: $thumbnail-proportion;
-
+@import '../../../styles/variables.scss';
 .thumbnail{
   margin: .5em;
   display:table;
@@ -15,7 +11,6 @@ $thumbnail-image-width: $thumbnail-proportion;
       position: absolute;
       top: .5em;
       right: 0.5em;
-      
     }
   }
   img, .dummy-image {
@@ -37,7 +32,7 @@ $thumbnail-image-width: $thumbnail-proportion;
     color:white;
     text-align:left;
     padding:1em;
-    background-color:$details-bg-color;
+    background-color:$thumbnail-details-bg-color;
     vertical-align: middle;
     font-size:.75em;
     position:relative;
@@ -62,32 +57,26 @@ $thumbnail-image-width: $thumbnail-proportion;
         }
       }
     }
-    .arrow-left {
+    .arrow-left, .arrow-top {
       margin: 0 0 15px 0;
       width: 0px;
       height: 0px;
       border-top: 10px solid transparent;
       border-bottom: 10px solid transparent;
-      border-right: 10px solid $details-bg-color;
+      border-right: 10px solid $thumbnail-details-bg-color;
       position: absolute;
       left: -6%;
       top: 50%;
     }
+    .arrow-top{
+      border-right: 10px solid $thumbnail-arrow-highlight-color;
+      left: -7%;
+      top: -10%;
+      transform: rotate(90deg);
+    }
   }
   &.highlighted {
-    border:.15em solid white;
-  }
-  .arrow-top{
-    margin: 0 0 15px 0;
-    width: 0px;
-    height: 0px;
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-    border-right: 10px solid #ffffff;
-    position: absolute;
-    left: -7%;
-    top: -10%;
-    transform: rotate(90deg);
+    border:.15em solid $thumbnail-arrow-highlight-color;
   }
 }
 
@@ -95,6 +84,9 @@ $thumbnail-image-width: $thumbnail-proportion;
   .thumbnail{
     width:100%;
     .thumbnail-container{
+      .thumbnail-title {
+        width: 90%;
+      }
       width:75%;
       .stats{
         .stat{

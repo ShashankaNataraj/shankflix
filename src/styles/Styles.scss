@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 @import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+@import './variables.scss';
 /*
 * Override default browser styles
 */
@@ -8,7 +9,7 @@ body{
   margin: 0em;
 }
 .App {
-  font-family: sans-serif;
+  font-family: Roboto;
   text-align: center;
-  background-color: #262626;
+  background-color: $app-background-color;
 }

@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import Header from "./Components/Header/Header";
 import Reel from "./Components/Reel/Reel";
-import "./Styles.scss";
+import "./styles/Styles.scss";
 import { StateProvider } from "./State";
-import Constants from "./Constants";
-import { useStateValue } from "./State";
 import Reducer from "./Reducer";
 function App() {
   const initialState = {

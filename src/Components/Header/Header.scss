@@ -1,6 +1,25 @@
 .Header{
+  overflow: hidden;
+  padding:5em;
+  background: linear-gradient(rgba(0,0,0,.8), rgba(10,10,10,.8)),url('https://2.bp.blogspot.com/_zfDuy4-yDB8/SuaXb1BGw7I/AAAAAAAAEls/ReifVDiQq8k/s640/faces_indian_actress_collage_art1.jpg') repeat-x;
+  // animation: slide 60s linear infinite;
   img {
     height:3em;
     padding: .5em 0em 0em 0em;
+    margin:0 auto;
   }
 }
+@media (max-width: 645px) {
+  .Header {
+    padding: 1em;
+  }
+}
+
+// @keyframes slide{
+//   0%{
+//     transform: translate3d(0, 0, 0);
+//   }
+//   100%{
+//     transform: translate3d(-160em, 0, 0);
+//   }
+// }

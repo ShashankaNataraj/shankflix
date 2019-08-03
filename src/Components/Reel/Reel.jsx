@@ -60,6 +60,15 @@ export default function Reel(props) {
       breaksAfterEvery,
       event: evt
     });
+    setTimeout(
+      () =>
+        document.querySelector(".preview").scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+          inline: "center"
+        }),
+      500
+    );
   }
   let dummyData = [],
     isDummyMode = false;

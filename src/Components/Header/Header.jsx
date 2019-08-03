@@ -1,5 +1,7 @@
 import React from "react";
 import "./Header.scss";
+import { useStateValue } from "../../State";
+
 export default function Header() {
   return (
     <div className="Header">
