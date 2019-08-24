@@ -1,4 +1,10 @@
-Assignment #1: (Shashanka + Netflix = Shankflix)
+## You who pass, here be dragons
+This repo contains code and docs for my book my show assignment which I completed as per their interview process.
+
+The original assignment is here:
+https://www.dropbox.com/s/m65isq9lzbjekd9/Dev%20Hiring%20Assignment%20-%20SDE3%20-%202019.pdf?dl=0
+
+### Assignment #1: (Shashanka + Netflix = Shankflix)
 Live Link: https://bitly.com/shashankas-bms-assignment
 Code: https://codesandbox.io/s/highlight-reel-crpdv
 
@@ -27,6 +33,6 @@ What I would improve next if this was a real project:
 4. Paging & Filtering
 5. Unit Testing
 
-Assignment #2: 
+### Assignment #2: 
 https://docs.google.com/presentation/d/11zd-s88iK0TkDNqVZd-4G7GFZT1g_SGZZuF5082gRnw/edit?usp=sharing
 
